@@ -1,0 +1,28 @@
+version: '3'
+services:
+  redis:
+    expose:
+      - 6379
+    ports:
+      - "6381:6379"
+    container_name: template-go-nextjs
+    image: "redis:alpine"
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - ~/postgres-data:/var/lib/postgresql/data
+    ports:
+      - 54323:5432
+#  grpc:
+#    image: golang:1.6.1-alpine
+#    volumes:
+#      - ./back:/go/src/go-with-compose
+#    working_dir: /go/src/go-with-compose
+#    command: go run main.go
+#    links:
+#      - db
+#      - redis
+
